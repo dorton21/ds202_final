@@ -1,0 +1,58 @@
+<h1>Project Proposal Spring 2020<h1>
+<hr>
+
+<h3>Group Members</h3>
+<ul>
+  <li><p>Caitlin Fordell</p></li>
+  <li><p>Marcella Anderson</p></li>
+  <li><p>Brian Sayre</p></li>
+  <li><p>Mario Lloyd Galvao-Wilson</p></li>
+  <li><p>Justin Park</p></li>
+  <li><p>Desmond Orton</p></li>
+</ul>
+
+<h3>Datasets:</h3>
+<i>Data from 1921-2021 of songs on Spotify</i>
+<a href="https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks">Link to this dataset</a>
+  <ul>
+    <li><h4>Overview:</h4></li>
+    <ul>
+      <li><p>This dataset contains over 175,000 songs spanning from 1912 until 2020. This data was collected from the spotifyAPI. This data compares songs by their genre, year of release, artist, and so forth.
+</p></li>
+    </ul>
+  </ul>
+<i>2019 Top 50 Songs on Spotify</i>
+<a href="https://www.kaggle.com/leonardopena/top50spotify2019">Link to this dataset</a>
+<ul>
+    <li><h4>Overview:</h4></li>
+    <ul>
+      <li><p>This dataset shows the top 50 songs of 2019 from all over the globe. The data was originally gathered from http://organizeyourmusic.playlistmachinery.com. The dataset contains 13 different variables.
+
+</p></li>
+    </ul>
+  </ul>
+
+
+<h3>Our Ideas:</h3>
+<p>Combine the data sheets data_by_year and data_by_genre</p>
+
+
+<h3>Our Questions:</h3>
+<h6>Data by Year:</h6>
+<ul>
+  <li><p>How have energy, liveliness, danceability, duration, speechiness, and tempo changed throughout the years?</p></li>
+</ul>
+<h6>Data by Genre:</h6>
+<ul>
+  <li><p>What are the trends of the audio features of each genre? Do the audio features determine the genre?
+</p></li>
+  <li><p>Which genres were listened to most/least?
+</p></li>
+</ul>
+<h6>Top 50:</h6>
+<ul>
+  <li><p>What are the most popular genres and artists?
+</p></li>
+  <li><p>Are there any audio features that most top songs have in common?
+</p></li>
+</ul>
