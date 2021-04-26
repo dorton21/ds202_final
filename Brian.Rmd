@@ -82,9 +82,4 @@ ggarrange(latinPlot, popPlot,
           ncol = 2, nrow = 2)
 ```
 
-4. Compare top songs from one genre and compare it with average for the genre
-```{r}
-
-```
-
 

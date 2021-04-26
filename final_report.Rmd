@@ -1,0 +1,79 @@
+
+## **Spotify Data Exploration** 
+#### Authors: Justin Park, Marcella Anderson, Caitlin Fordell, Desmond Orton, Mario Lloyd Galvao-Wilson, and Brian Sayre
+
+![](./spotify.jpg){width=50%}
+
+<hr>
+
+## **Introduction**
+Introduce what we will explore in our project report.
+
+<hr>
+
+## **Research Questions**
+To achieve our goal, we have developed five general areas of exploration with the following five research questions: 
+
+- What are the most frequent genres of the top artists?
+- Do the most popular artists align well with the rest of their genre?
+
+<hr>
+
+## **Overview of the Dataset**
+This section describes how we obtained the data for this project and what it includes.
+
+#### **Obtaining the dataset**
+how we obtained the data... 
+  
+#### **What is in the dataset**
+what is in the data...
+  
+Our dataset and the code can be found at https://github.com/dorton21/ds202_final
+
+<hr>
+
+## **Exploratory Analysis**
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(ggpubr)
+```
+
+## Stuff here
+
+
+
+
+<hr>
+
+## **Conclusion**
+
+In conclusion, 
+
+<hr>
+
+## **Personal Contributions**
+
+Our Github repository address is https://github.com/dorton21/ds202_final
+
+#### **Justin Park**
+
+  
+#### **Marcella Anderson**
+
+  
+#### **Caitlin Fordell**
+
+  
+#### **Desmond Orton**
+
+  
+#### **Mario Lloyd Galvao-Wilson**
+
+  
+#### **Brian Sayre**
+
+  
+<hr>
