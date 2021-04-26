@@ -1,0 +1,98 @@
+---
+title: "Final Project - Caitlin"
+author: "Caitlin Fordell"
+date: "4/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(Hmisc)
+library(ggplot2)
+```
+
+
+## Top 50 Data Analysis
+Are there any audio features that most top songs have in common?
+
+```{r}
+top50 <- read.csv("C://Users//caitl//Documents//DS 202//Final Project//top50.csv")
+str(top50)
+
+##finding correlations between numerical variables
+topnum <- top50 %>% select(-Track.Name, -Artist.Name, -Genre) 
+topnum %>% cor()
+```
+
+Energy and Loudness..db.. have a moderately strong correlation of 0.671, which means that they express a lot of similar information. Also, Speechiness. and Beats.Per.Minute have a moderately strong correlation of 0.557. 
+
+```{r}
+hist(topnum$Beats.Per.Minute)  
+hist(topnum$Energy) 
+hist(topnum$Danceability)
+hist(topnum$Loudness..dB..)
+hist(topnum$Liveness)
+hist(topnum$Valence.)
+hist(topnum$Length.)
+hist(topnum$Acousticness..)
+hist(topnum$Speechiness.)
+hist(topnum$Popularity)
+summary(topnum)
+```
+
+Beats.Per.Minute has a mean of 120.1 beats per minute and had a very skewed right distribution. In general, the Top 50 songs had relatively high tempos.
+
+Energy has a mean of 64.06 and is slightly skewed to the left. Overall, the Top 50 songs had a tendency to be moderately to high energy songs. 
+
+Danceability has a mean of 71.38 and is very skewed to the left. Overall, the Top 50 songs were very easy to dance to according to the danceability rating. 
+
+Loudness..dB.. has a mean of -5.66 is relatively symmetric. The Top 50 songs tended to be relatively loud songs as the mean is close to 0. 
+
+Liveness has a mean of 14.66 and is very skewed to the right. This means that the Top 50 tracks were generally not very likely to be live tracks recorded.
+
+Valence. has a mean of 54.6, a range from 10 to 95, and is bimodal but pretty symmetric. Valence reflects the overall positive mood of a song. Since the range of valence is so large and given the distribution, we see that the Top 50 songs included both positive and negative moods. Since the mean was 54.6 and the distribution was bimodal, we could say that the Top 50 songs equally represent positive and negative moods.
+
+Length. has a mean of 201 seconds and is symmetric.
+
+Acousticness.. has a mean of 22.16 and is skewed to the right. Generally, the Top 50 songs tended to not be very acoustic.
+
+Speechiness. has a mean of 12.48 and is skewed to the right. Since the mean of speechiness is so low, the Top 50 songs did not commonly include many spoken words.
+
+Popularity has a mean of 87.5 and is skewed to the left. Since the high value for popularity is 100, it makes sense that the Top 50 songs of the year had high popularity ratings.
+
+
+How do Top 5 and Top 10 songs compare to the rest of the dataset?
+```{r}
+##separating the top 5 songs
+top5 <- top50 %>% filter(X < 6)
+top5
+summary(top5)
+bottom45 <- top50 %>% filter(X > 5)
+head(bottom45)
+summary(bottom45)
+```
+
+Overall, the top 5 songs have a higher mean beats per minute, energy, loudness, length, and speechiness than the other 45 songs. Both the top 5 songs and the other 45 songs also have very similar mean valence and popularity. The top 5 songs also have a lower danceability, liveness, and acousticness than the other 45 songs.
+
+```{r}
+##separating the top 10 songs
+top10 <- top50 %>% filter(X < 11)
+top10
+summary(top10)
+
+bottom40 <- top50 %>% filter(X > 10)
+head(bottom40)
+summary(bottom40)
+```
+
+From these summaries, we can see that the Top 10 songs have higher beats per minute, energy, and speechiness than the other 40 songs. Both have similar mean loudness, valence, and popularity. The Top 10 songs have lower means of danceability, liveness, length, and acousticness than the other 40 songs.  
+
+Given these results, we could say that the top songs tend to have higher beats per minute, energy, and speechiness and lower danceability, liveness, and acousticness than the other songs in the Top 50.
+
+scatterplots on popularity vs. danceability, beats per minute, energy
+
+Did length of song determine if it will be in top 50 in 2019? (Use combined datasets)
