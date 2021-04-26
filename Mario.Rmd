@@ -1,0 +1,8 @@
+---
+title: "Mario's Contributions"
+author: "Mario Lloyd Galvao-Wilson"
+output:
+  html_document:
+    df_print: paged
+---
+
