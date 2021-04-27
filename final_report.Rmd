@@ -6,7 +6,7 @@
 <hr>
 
 ## **Introduction**
-During the project our group wanted to look into data provided by Spotify. Music is something everyone in our group enjoys almost daily but rarely do you get answers to questions such as "what makes an artist popular?" or "what the trends in music over the years?". Given this numerical data that describes these artists, songs and genres we aimed to answer some of those questions the best we could. 
+During the project our group wanted to look into data provided by Spotify. Music is something everyone in our group enjoys almost daily but rarely do you get answers to questions such as "what makes an artist popular?" or "what have been trends in music over the years?". Given this numerical data that describes these artists, songs, and genres we aimed to answer some of those questions the best we could. 
 
 <hr>
 
@@ -49,23 +49,20 @@ library(ggpubr)
 library(reshape)
 ```
 
-#### **What are the most frequent genres of the top artists?**
+#### **- What are the most frequent genres of the top artists?**
 
-Load genre and artist data.
-```{r}
+```{r, echo=FALSE, message = FALSE, warning = FALSE, results=FALSE, fig.align='default', fig.show="hold", out.width="50%"}
 genres <- read.csv("./1921_2020_spotify/data_by_genres.csv")
 artists <- read.csv("./1921_2020_spotify/data_w_genres.csv")
 ```
 
-Get top 100 artists.
-```{r}
+```{r, echo=FALSE, message = FALSE, warning = FALSE, results=FALSE, fig.align='default', fig.show="hold", out.width="50%"}
 topArtists <- arrange(artists, -popularity) %>%
   filter(genres != "[]") %>%
   head(100)
 ```
 
-Get most popular genres and plot.
-```{r}
+```{r, echo=FALSE, message = FALSE, warning = FALSE, fig.align='default', fig.show="hold"}
 topArtists$genres <- substr(topArtists$genres, 3, nchar(topArtists$genres)-2)
 topArtistsList <- topArtists %>%
   separate(col=genres, sep="\', \'", into=c("g1", "g2", "g3", "g4", "g5", "g6"))
@@ -82,10 +79,10 @@ ggplot(genreCount,aes(x=reorder(Var1, -Freq), y=Freq)) +
  
 We can see from the plot the top 7 genres of artists currently in the top 100. The results surprised me a little bit at first until I remember that this data is world-wide so it would make sense that the most popular in the use, like dance pop and pop, aren't necessarily the top in the whole world.
 
-#### **Do the most popular artists align well with the rest of their genre?**
+#### **- Do the most popular artists align well with the rest of their genre?**
 
-Plot the top artist of the latin and pop genres to compare their features with their genre's average.
-```{r}
+Plot the top artists of the latin and pop genres to compare their features with their genre's average.
+```{r, echo=FALSE, message = FALSE, warning = FALSE, fig.align='default', fig.show="hold"}
 
 cols <- c("artists", "acousticness", "danceability", "energy", "instrumentalness", "liveness", "speechiness", "valence")
 
