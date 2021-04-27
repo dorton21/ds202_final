@@ -3,11 +3,10 @@
 #### Authors: Justin Park, Marcella Anderson, Caitlin Fordell, Desmond Orton, Mario Lloyd Galvao-Wilson, and Brian Sayre
 
 ![](./spotify.jpg){width=50%}
-
 <hr>
 
 ## **Introduction**
-Introduce what we will explore in our project report.
+During the project our group wanted to look into data provided by Spotify. Music is something everyone in our group enjoys almost daily but rarely do you get answers to questions such as "what makes an artist popular?" or "what the trends in music over the years?". Given this numerical data that describes these artists, songs and genres we aimed to answer some of those questions the best we could. 
 
 <hr>
 
@@ -16,6 +15,7 @@ To achieve our goal, we have developed five general areas of exploration with th
 
 - What are the most frequent genres of the top artists?
 - Do the most popular artists align well with the rest of their genre?
+- add the other questions we answered here...
 
 <hr>
 
@@ -23,10 +23,16 @@ To achieve our goal, we have developed five general areas of exploration with th
 This section describes how we obtained the data for this project and what it includes.
 
 #### **Obtaining the dataset**
-how we obtained the data... 
+We obtained both sets of data from Kaggle.  
+- The first dataset we used was *Data from 1921-2021 of songs on Spotify* which can be found [here](https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks).   
+- The second dataset we used was *2019 Top 50 Songs on Spotify* which can be found [here](https://www.kaggle.com/leonardopena/top50spotify2019).   
   
 #### **What is in the dataset**
-what is in the data...
+*Data from 1921-2021 of songs on Spotify*  
+This dataset contains over 175,000 songs spanning from 1912 until 2020. This data was collected from the spotifyAPI. This data compares songs by their genre, year of release, artist, and so forth.  
+  
+*2019 Top 50 Songs on Spotify*   
+This dataset shows the top 50 songs of 2019 from all over the globe. The data was originally gathered from http://organizeyourmusic.playlistmachinery.com. The dataset contains 13 different variables.
   
 Our dataset and the code can be found at https://github.com/dorton21/ds202_final
 
@@ -36,14 +42,92 @@ Our dataset and the code can be found at https://github.com/dorton21/ds202_final
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE}
 library(tidyverse)
+library(lubridate)
 library(dplyr)
 library(ggplot2)
 library(ggpubr)
+library(reshape)
 ```
 
-## Stuff here
+#### **What are the most frequent genres of the top artists?**
+
+Load genre and artist data.
+```{r}
+genres <- read.csv("./1921_2020_spotify/data_by_genres.csv")
+artists <- read.csv("./1921_2020_spotify/data_w_genres.csv")
+```
+
+Get top 100 artists.
+```{r}
+topArtists <- arrange(artists, -popularity) %>%
+  filter(genres != "[]") %>%
+  head(100)
+```
+
+Get most popular genres and plot.
+```{r}
+topArtists$genres <- substr(topArtists$genres, 3, nchar(topArtists$genres)-2)
+topArtistsList <- topArtists %>%
+  separate(col=genres, sep="\', \'", into=c("g1", "g2", "g3", "g4", "g5", "g6"))
+
+genreTable <- table(topArtistsList$g1)
+genreCount <- as.data.frame(genreTable)
+genreCount <- filter(genreCount, Freq > 2)
+
+ggplot(genreCount,aes(x=reorder(Var1, -Freq), y=Freq)) + 
+  geom_bar(stat='identity', fill="blue") +
+  xlab("Artists' Genre") + 
+  ylab("Number of occurances in top 100 Artists")
+```
+ 
+We can see from the plot the top 7 genres of artists currently in the top 100. The results surprised me a little bit at first until I remember that this data is world-wide so it would make sense that the most popular in the use, like dance pop and pop, aren't necessarily the top in the whole world.
+
+#### **Do the most popular artists align well with the rest of their genre?**
+
+Plot the top artist of the latin and pop genres to compare their features with their genre's average.
+```{r}
+
+cols <- c("artists", "acousticness", "danceability", "energy", "instrumentalness", "liveness", "speechiness", "valence")
+
+latinArtists <- topArtistsList %>%
+  filter(g1 == "latin") %>%
+  head(3) %>%
+  select(cols)
+
+popArtists <- topArtistsList %>%
+  filter(g1 == "pop") %>%
+  head(3) %>%
+  select(cols)
+
+genresTop <- genres %>%
+  dplyr::rename(artists = genres) %>%
+  select(cols) %>%
+  filter(artists == "latin" | artists == "pop")
+
+featureCols <- c("acousticness",	"danceability",	"energy",	"instrumentalness",	"liveness", "speechiness", "valence")
+
+latinBoth <- rbind(genresTop %>% filter(artists == "latin"), latinArtists)
+latinMelted <- melt(latinBoth, id.vars="artists", measure.vars=featureCols, variable_name = "feature")
+latinPlot <- ggplot(latinMelted, aes(feature, value, fill=artists)) +
+  geom_bar(stat = "identity", position = 'dodge')+ 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjus=1)) 
+
+popBoth <- rbind(genresTop %>% filter(artists == "pop"), popArtists)
+popMelted <- melt(popBoth, id.vars="artists", measure.vars=featureCols, variable_name = "feature")
+popPlot <- ggplot(popMelted, aes(feature, value, fill=artists)) +
+  geom_bar(stat = "identity", position = 'dodge')+ 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjus=1)) 
+
+ggarrange(latinPlot, popPlot,
+          labels = c("A", "B"),
+          ncol = 1, nrow = 2)
+```
+  
+Plot A represents the latin genre and plot B represents the pop genre. For these plots I used the 3 most popular artists from each genre. I used latin because it is the most frequent genre and pop because it had the artists most likely to be known by our class. We can see in the latin section that danceability, speechiness, and valence for the 3 artist is much higher than the average. On the other hand they had lower acousticness than the average in latin.  
+For the pop genre we saw a few different trends. The top 3 artists had a lower danceability, energy, liveness, and valence than average in pop. However, they all had a higher acousticness than the average. This might show a new trend in pop for more slow songs that focus more on the vocals than the music behind them.
 
 
+## ADD STUFF HERE
 
 
 <hr>
@@ -58,22 +142,22 @@ In conclusion,
 
 Our Github repository address is https://github.com/dorton21/ds202_final
 
-#### **Justin Park**
+#### **Justin Park**  
 
   
-#### **Marcella Anderson**
+#### **Marcella Anderson**  
 
   
-#### **Caitlin Fordell**
+#### **Caitlin Fordell**  
 
   
-#### **Desmond Orton**
+#### **Desmond Orton**  
 
   
-#### **Mario Lloyd Galvao-Wilson**
+#### **Mario Lloyd Galvao-Wilson**  
 
   
-#### **Brian Sayre**
-
+#### **Brian Sayre**  
+Brian worked on the questions "What are the most frequent genres of the top artists?" and "Do the most popular artists align well with the rest of their genre?". Along with eveyone else he helped put together the final repost and presentation.
   
 <hr>

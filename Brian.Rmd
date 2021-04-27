@@ -14,20 +14,22 @@ library(reshape)
 library(ggpubr)
 ```
 
-0. Load genre and artist data
+#### **What are the most frequent genres of the top artists?**
+
+Load genre and artist data.
 ```{r}
 genres <- read.csv("./1921_2020_spotify/data_by_genres.csv")
 artists <- read.csv("./1921_2020_spotify/data_w_genres.csv")
 ```
 
-1. Get top 100 artists
+Get top 100 artists.
 ```{r}
 topArtists <- arrange(artists, -popularity) %>%
   filter(genres != "[]") %>%
   head(100)
 ```
 
-2. Get most popular genres
+Get most popular genres and plot.
 ```{r}
 topArtists$genres <- substr(topArtists$genres, 3, nchar(topArtists$genres)-2)
 topArtistsList <- topArtists %>%
@@ -42,8 +44,12 @@ ggplot(genreCount,aes(x=reorder(Var1, -Freq), y=Freq)) +
   xlab("Artists' Genre") + 
   ylab("Number of occurances in top 100 Artists")
 ```
+ 
+We can see from the plot the top 7 genres of artists currently in the top 100. The results surprised me a little bit at first until I remember that this data is world-wide so it would make sense that the most popular in the use, like dance pop and pop, aren't necessarily the top in the whole world.
 
-3. Compare features of the top with overall averages
+#### **Do the most popular artists align well with the rest of their genre?**
+
+Plot the top artist of the latin and pop genres to compare their features with their genre's average.
 ```{r}
 
 cols <- c("artists", "acousticness", "danceability", "energy", "instrumentalness", "liveness", "speechiness", "valence")
@@ -79,7 +85,9 @@ popPlot <- ggplot(popMelted, aes(feature, value, fill=artists)) +
 
 ggarrange(latinPlot, popPlot,
           labels = c("A", "B"),
-          ncol = 2, nrow = 2)
+          ncol = 1, nrow = 2)
 ```
-
+  
+Plot A represents the latin genre and plot B represents the pop genre. For these plots I used the 3 most popular artists from each genre. I used latin because it is the most frequent genre and pop because it had the artists most likely to be known by our class. We can see in the latin section that danceability, speechiness, and valence for the 3 artist is much higher than the average. On the other hand they had lower acousticness than the average in latin.  
+For the pop genre we saw a few different trends. The top 3 artists had a lower danceability, energy, liveness, and valence than average in pop. However, they all had a higher acousticness than the average. This might show a new trend in pop for more slow songs that focus more on the vocals than the music behind them.
 
