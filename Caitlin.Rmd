@@ -31,17 +31,19 @@ topnum %>% cor()
 Energy and Loudness..db.. have a moderately strong correlation of 0.671, which means that they express a lot of similar information. Also, Speechiness. and Beats.Per.Minute have a moderately strong correlation of 0.557. 
 
 ```{r}
-hist(topnum$Beats.Per.Minute)  
-hist(topnum$Energy) 
-hist(topnum$Danceability)
-hist(topnum$Loudness..dB..)
-hist(topnum$Liveness)
-hist(topnum$Valence.)
-hist(topnum$Length.)
-hist(topnum$Acousticness..)
-hist(topnum$Speechiness.)
-hist(topnum$Popularity)
+a <- ggplot(topnum, aes(x=Beats.Per.Minute))+geom_boxplot()  
+b <- ggplot(topnum, aes(x=Energy))+geom_boxplot()
+c <- ggplot(topnum, aes(x=Danceability))+geom_boxplot()
+d <- ggplot(topnum, aes(x=Loudness..dB..))+geom_boxplot()
+e <- ggplot(topnum, aes(x=Liveness))+geom_boxplot()
+f <- ggplot(topnum, aes(x=Valence.))+geom_boxplot()
+g <- ggplot(topnum, aes(x=Length.))+geom_boxplot()
+h <- ggplot(topnum, aes(x=Acousticness..))+geom_boxplot()
+i <- ggplot(topnum, aes(x=Speechiness.))+geom_boxplot()
+j <- ggplot(topnum, aes(x=Popularity))+geom_boxplot()
 summary(topnum)
+library(ggpubr)
+ggarrange(a,b,c,d,e,f,g,h,i,j, ncol=3, nrow=4)
 ```
 
 Beats.Per.Minute has a mean of 120.1 beats per minute and had a very skewed right distribution. In general, the Top 50 songs had relatively high tempos.
@@ -84,6 +86,7 @@ top10 <- top50 %>% filter(X < 11)
 top10
 summary(top10)
 
+
 bottom40 <- top50 %>% filter(X > 10)
 head(bottom40)
 summary(bottom40)
@@ -94,5 +97,21 @@ From these summaries, we can see that the Top 10 songs have higher beats per min
 Given these results, we could say that the top songs tend to have higher beats per minute, energy, and speechiness and lower danceability, liveness, and acousticness than the other songs in the Top 50.
 
 scatterplots on popularity vs. danceability, beats per minute, energy
+```{r}
+ggplot(data=top50, aes(x=X, y=Beats.Per.Minute, color=Popularity))+geom_point()+xlab("Chart Ranking")+ylab("Beats Per Minute")+ggtitle("Ranking vs. Beats Per Minute by Popularity")
+```
 
-Did length of song determine if it will be in top 50 in 2019? (Use combined datasets)
+Beats per minute does not necessarily correlate with the ranking or popularity of a song. 
+
+```{r}
+ggplot(top50, aes(x=X, y=Popularity))+geom_point()+ggtitle("Chart Ranking vs. Popularity")+xlab("Chart Ranking")
+```
+
+The overall rank in the top 50 for a song does not necessarily correlate to the popularity of a song. The top song actually had the 3rd lowest popularity rating of the whole chart, which leads me to question both how popularity was measured and if popularity measured the overall popularity of the song for the whole year or the popularity of the song at the time of creation of this dataset.
+
+specific artists in 2019??
+```{r}
+ggplot(top50, aes(x=Artist.Name))+geom_bar()+theme(axis.text.x=element_text(angle=90,vjust = 0.5, hjust=1))
+```
+
+
