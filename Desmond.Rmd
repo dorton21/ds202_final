@@ -1,4 +1,3 @@
-## Question 1
 
 - How have energy, liveliness, danceability, duration, speechiness, and tempo changed throughout the years?
 - Did the information about the most popular artist that year follow the same pattern of energy, liveliness, danceability, duration, speechiness, and tempo.
