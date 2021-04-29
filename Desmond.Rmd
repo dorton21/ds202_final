@@ -1,0 +1,26 @@
+## Question 1
+
+- How have energy, liveliness, danceability, duration, speechiness, and tempo changed throughout the years?
+- Did the information about the most popular artist that year follow the same pattern of energy, liveliness, danceability, duration, speechiness, and tempo.
+
+```{r}
+library(tidyverse)
+library(plotly)
+
+years <- read.csv("./1921_2020_spotify/data_by_year.csv")
+all <- read.csv("./1921_2020_spotify/data.csv")
+
+str(years)
+```
+
+```{r}
+ggplot(years, aes(x=year, y=acousticness)) + geom_line(color="blue") + ggtitle("Acousticness by Year")
+ggplot(years, aes(x=year, y=energy)) + geom_line(color="red") + ggtitle("Energy by Year")
+ggplot(years, aes(x=year, y=liveness)) + geom_line(color="green") + ggtitle("Liveness by Year")
+ggplot(years, aes(x=year, y=danceability)) + geom_line(color="purple") + ggtitle("Danceability by Year")
+ggplot(years, aes(x=year, y=duration_ms)) + geom_line() + ggtitle("Duration by Year")
+ggplot(years, aes(x=year, y=tempo)) + geom_line(color="yellow") + ggtitle("Tempo by Year")
+ggplot(years, aes(x=year, y=speechiness)) + geom_line(color="pink") + ggtitle("Speechiness by Year")
+```
+
+
