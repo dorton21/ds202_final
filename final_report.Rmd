@@ -152,14 +152,17 @@ Our Github repository address is https://github.com/dorton21/ds202_final
 
 #### **Justin Park**
 
+```{R}
+top50 <- read.csv("2019_top50_spotify/top50.csv")
+str(top50)
+```
+
 What are the most popular genres?
 ```{R}
 myvars <- c("Genre", "Popularity")
-genres <- top50[myvars]
+top50genres <- top50[myvars]
 
-genres <- genres[order(-genres$Popularity),]
-
-topgenres <- genres %>%
+topgenres <- top50genres %>%
   group_by(Genre) %>%
   summarize(Popularity = mean(Popularity))
 
@@ -171,9 +174,9 @@ topgenres
 Who are the most popular artists?
 ```{R}
 myvars2 <- c("Artist.Name", "Popularity")
-artists <- top50[myvars2]
+top50artists <- top50[myvars2]
 
-topartists <- artists %>%
+topartists <- top50artists %>%
   group_by(Artist.Name) %>%
   summarize(Popularity = mean(Popularity))
 
