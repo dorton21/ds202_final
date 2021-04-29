@@ -261,6 +261,7 @@ topgenres <- topgenres[order(-topgenres$Popularity),]
 
 topgenres
 ```
+The genres in the top 50 dataset from 2019 mostly contains pop or rap songs. This is very different from the previous dataset that we used earlier that had more of a variety of genres. I believe these genres represent the young population in the United States. Since younger people (teenagers and young adults) tend to use streaming platforms like Spotify more, their music choices will reflect more on the top 50 songs than any other generation.
 
 Who are the most popular artists?
 ```{R}
@@ -275,6 +276,7 @@ topartists <- topartists[order(-topartists$Popularity),]
 
 topartists
 ```
+The top three artists in this dataset were Bad Bunny, Post Malone, and Anuel AA. The top artists of 2019 go hand in hand with the top genres since these names tend to product pop or rap music.
 
   
 #### **Marcella Anderson**  
@@ -290,7 +292,37 @@ Desmond contributed on the writing of the proposal, writing of the final report,
 
 
 #### **Mario Lloyd Galvao-Wilson**  
+In addition to the finalized code below, Mario helped with data aquisition, proposal brainstorming, presentation slides, final report, and the final presentation.
+```{r}
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(tidyr)
+genre <- read.csv("./1921_2020_spotify/data_by_genres.csv")
+artists <- read.csv("./1921_2020_spotify/data_w_genres.csv")
+d <- read.csv("./1921_2020_spotify/data.csv")
+```
 
+```{r}
+top10g <- genre %>% 
+  arrange(-popularity) %>%
+  head(10)
+
+top10g %>%
+  ggplot(aes(genres, popularity)) + geom_col(fill = 'royalblue3') + theme(axis.text.x = element_text(size = 12, angle = 45, vjust = 1, hjust = 1)) + coord_cartesian(ylim = c(70, 82)) + labs(x = 'Top 10 Genres', y = 'Popularity (scaled)', title = 'Popularity of the Top 10 Genres')
+```
+
+```{r}
+v <- melt(top10g, id.vars = 'genres')
+ggplot(v, aes(genres, value)) + geom_col()
+```
+
+```{r}
+top10g %>%
+  select(-duration_ms, -speechiness, -popularity, -mode, -loudness, -tempo, -key) %>%
+  pivot_longer(., cols = !genres) %>%
+  ggplot(aes(name, value)) + geom_col(position = 'dodge') + facet_wrap(~genres) + coord_flip() + labs(x = 'Value', y = 'Characteristic', title = 'Values for Each Characteristic of Each Top 10 Genre') + theme_bw()
+```
   
 #### **Brian Sayre**  
 Brian worked on the questions "What are the most frequent genres of the top artists?" and "Do the most popular artists align well with the rest of their genre?". Along with eveyone else he helped put together the final repost and presentation.
