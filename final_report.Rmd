@@ -51,6 +51,8 @@ library(dplyr)
 library(ggplot2)
 library(ggpubr)
 library(reshape)
+library(Hmisc)
+library(ggpubr)
 ```
 
 #### **- What are the most frequent genres of the top artists?**
@@ -211,8 +213,71 @@ ggplot(yearWithArtist, aes(x=year, y = speechiness,color="Yearly speechiness Ave
 ```
 #### **- What are the most popular genres and artists?**
 ADD YOUR ANALYSIS HERE
+#### **- Are there any variables that are highly correlated?**
+```{r}
+top50 <- read.csv("C://Users//caitl//Documents//DS 202//Final Project//top50.csv")
+str(top50)
+
+##finding correlations between numerical variables
+topnum <- top50 %>% select(-Track.Name, -Artist.Name, -Genre) 
+topnum %>% cor()
+```
+
+Energy and Loudness..db.. have a moderately strong correlation of 0.671, which means that they express a lot of similar information. Also, Speechiness. and Beats.Per.Minute have a moderately strong correlation of 0.557. 
+
 #### **- Are there any audio features that most top songs have in common?**
-ADD YOUR ANALYSIS HERE
+```{r}
+a <- ggplot(topnum, aes(x=Beats.Per.Minute))+geom_boxplot()  
+b <- ggplot(topnum, aes(x=Energy))+geom_boxplot()
+c <- ggplot(topnum, aes(x=Danceability))+geom_boxplot()
+d <- ggplot(topnum, aes(x=Loudness..dB..))+geom_boxplot()
+e <- ggplot(topnum, aes(x=Liveness))+geom_boxplot()
+f <- ggplot(topnum, aes(x=Valence.))+geom_boxplot()
+g <- ggplot(topnum, aes(x=Length.))+geom_boxplot()
+h <- ggplot(topnum, aes(x=Acousticness..))+geom_boxplot()
+i <- ggplot(topnum, aes(x=Speechiness.))+geom_boxplot()
+j <- ggplot(topnum, aes(x=Popularity))+geom_boxplot()
+ggarrange(a,b,c,d,e,f,g,h,i,j, ncol=3, nrow=4)
+```
+
+Beats.Per.Minute has a mean of 120.1 beats per minute and had a very skewed right distribution. In general, the Top 50 songs had relatively high tempos.
+
+Energy has a mean of 64.06 and is slightly skewed to the left. Overall, the Top 50 songs had a tendency to be moderately to high energy songs. 
+
+Danceability has a mean of 71.38 and is very skewed to the left. Overall, the Top 50 songs were very easy to dance to according to the danceability rating. 
+
+Loudness..dB.. has a mean of -5.66 is relatively symmetric. The Top 50 songs tended to be relatively loud songs as the mean is close to 0. 
+
+Liveness has a mean of 14.66 and is very skewed to the right. This means that the Top 50 tracks were generally not very likely to be live tracks recorded.
+
+Valence. has a mean of 54.6, a range from 10 to 95, and is bimodal but pretty symmetric. Valence reflects the overall positive mood of a song. Since the range of valence is so large and given the distribution, we see that the Top 50 songs included both positive and negative moods. Since the mean was 54.6 and the distribution was bimodal, we could say that the Top 50 songs equally represent positive and negative moods.
+
+Length. has a mean of 201 seconds and is symmetric.
+
+Acousticness.. has a mean of 22.16 and is skewed to the right. Generally, the Top 50 songs tended to not be very acoustic.
+
+Speechiness. has a mean of 12.48 and is skewed to the right. Since the mean of speechiness is so low, the Top 50 songs did not commonly include many spoken words.
+
+Popularity has a mean of 87.5 and is skewed to the left. Since the high value for popularity is 100, it makes sense that the Top 50 songs of the year had high popularity ratings.
+
+Common Features:
+Medium to high energy,
+high danceability,
+relatively loud,
+not likely to be live,
+equal range of valence,
+around 2-4 minutes long,
+not very acoustic,
+very little spoken words,
+overall, pretty high popularity ratings.
+
+#### **- Are ranking or beats per minute affected by popularity?**
+```{r}
+ggplot(data=top50, aes(x=X, y=Beats.Per.Minute, color=Popularity))+geom_point()+xlab("Chart Ranking")+ylab("Beats Per Minute")+ggtitle("Ranking vs. Beats Per Minute by Popularity")
+```
+
+No major correlation between popularity and ranking or between beats per minute and popularity.
+The #1 song actually has one of the lowest popularity ratings
 
 <hr>
 
