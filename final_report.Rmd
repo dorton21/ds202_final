@@ -131,7 +131,84 @@ For the pop genre we saw a few different trends. The top 3 artists had a lower d
 #### **- How have energy, liveliness, danceability, duration, speechiness, and tempo changed throughout the years?**
 ADD YOUR ANALYSIS HERE
 #### **- Did the information about the most popular artist during a given year follow the change of energy, liveliness, danceability, duration, speechiness, and tempo?**
-ADD YOUR ANALYSIS HERE
+```{r}
+#group by artist and year. 
+#add together the popularity of each artist for that year (average song value, add all song value, try both)
+#only get the most popular artist of each year
+
+artistByYear <- all %>%
+  group_by(artists, year) %>%
+  summarize(popularityByArtist = sum(popularity), 
+            acousticnessArt = mean(acousticness), 
+            danceabilityArt = mean(danceability),
+            energyArt = mean(energy),
+            durationArt = mean(duration_ms), 
+            instrumentalnessArt = mean(instrumentalness), 
+            tempoArt = mean(tempo), 
+            livenessArt = mean(liveness), 
+            loudnessArt = mean(loudness),
+            speechinessArt = mean(speechiness)) %>%
+  group_by(year) %>%
+  top_n(1, popularityByArtist) %>%
+  arrange(year)
+
+yearWithArtist <- full_join(years, artistByYear, by='year')
+
+#Acousticness
+ggplot(yearWithArtist, aes(x=year, y = acousticness,color="Yearly Acousticness Average "))+
+  geom_line()+scale_color_manual(values=c("deeppink", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = acousticnessArt, color='Top Artists Acousticness'))+
+  ylab("Average Acousticness")+ggtitle('Average Acousticness per Year',subtitle='Comparing best artist of the year\'s acousticness to average acousticness')
+
+#Danceability
+ggplot(yearWithArtist, aes(x=year, y = danceability,color="Yearly Danceability Average "))+
+  geom_line()+scale_color_manual(values=c("firebrick1", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = danceabilityArt, color='Top Artists Danceability'))+
+  ylab("Average Danceability")+ggtitle('Average Acousticness per Year',subtitle='Comparing best artist of the year\'s danceability to average danceability')
+
+#Energy
+ggplot(yearWithArtist, aes(x=year, y = energy,color="Yearly Energy Average"))+
+  geom_line()+scale_color_manual(values=c("sienna1", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = energyArt, color='Top Artists Energy'))+
+  ylab("Average Energy")+ggtitle('Average Energy per Year',subtitle='Comparing best artist of the year\'s energy to average energy')
+
+#Duration
+ggplot(yearWithArtist, aes(x=year, y = duration_ms,color="Yearly Duration Average"))+
+  geom_line()+scale_color_manual(values=c("gold2", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = durationArt, color='Top Artists Duration'))+
+  ylab("Average Duration")+ggtitle('Average Duration per Year',subtitle='Comparing best artist of the year\'s duration to average duration')
+
+#Instrumentalness
+ggplot(yearWithArtist, aes(x=year, y = instrumentalness,color="Yearly Instrumentalness Average"))+
+  geom_line()+scale_color_manual(values=c("forestgreen", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = instrumentalnessArt, color='Top Artists Instrumentalness'))+
+  ylab("Average Instrumentalness")+ggtitle('Average Instrumentalness per Year',subtitle='Comparing best artist of the year\'s instrumentalness to average instrumentalness')
+
+#Tempo
+ggplot(yearWithArtist, aes(x=year, y = tempo,color="Yearly Tempo Average"))+
+  geom_line()+scale_color_manual(values=c("turquoise3", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = tempoArt, color='Top Artists Tempo'))+
+  ylab("Average Tempo")+ggtitle('Average Tempo per Year',subtitle='Comparing best artist of the year\'s tempo to average tempo')
+
+#Liveness
+ggplot(yearWithArtist, aes(x=year, y = liveness,color="Yearly Liveness Average"))+
+  geom_line()+scale_color_manual(values=c("royalblue2", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = livenessArt, color='Top Artists Liveness'))+
+  ylab("Average Liveness")+ggtitle('Average Liveness per Year',subtitle='Comparing best artist of the year\'s liveness to average liveness')
+
+#Loudness
+ggplot(yearWithArtist, aes(x=year, y = loudness,color="Yearly Loudness Average"))+
+  geom_line()+scale_color_manual(values=c("slateblue3", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = loudnessArt, color='Top Artists Loudness'))+
+  ylab("Average Loudness")+ggtitle('Average Loudness per Year',subtitle='Comparing best artist of the year\'s loudness to average loudness')
+
+#Speechiness
+ggplot(yearWithArtist, aes(x=year, y = speechiness,color="Yearly speechiness Average"))+
+  geom_line()+scale_color_manual(values=c("purple", "black"))+
+  geom_line(data=artistByYear, aes(x=year, y = speechinessArt, color='Top Artists Speechiness'))+
+  ylab("Average Speechiness")+ggtitle('Average Speechiness per Year',subtitle='Comparing best artist of the year\'s speechiness to average speechiness')
+
+```
 #### **- What are the most popular genres and artists?**
 ADD YOUR ANALYSIS HERE
 #### **- Are there any audio features that most top songs have in common?**
