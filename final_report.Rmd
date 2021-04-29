@@ -247,6 +247,7 @@ topgenres <- topgenres[order(-topgenres$Popularity),]
 
 topgenres
 ```
+The genres in the top 50 dataset from 2019 mostly contains pop or rap songs. This is very different from the previous dataset that we used earlier that had more of a variety of genres. I believe these genres represent the young population in the United States. Since younger people (teenagers and young adults) tend to use streaming platforms like Spotify more, their music choices will reflect more on the top 50 songs than any other generation.
 
 Who are the most popular artists?
 ```{R}
@@ -261,6 +262,7 @@ topartists <- topartists[order(-topartists$Popularity),]
 
 topartists
 ```
+The top three artists in this dataset were Bad Bunny, Post Malone, and Anuel AA. The top artists of 2019 go hand in hand with the top genres since these names tend to product pop or rap music.
 
   
 #### **Marcella Anderson**  
