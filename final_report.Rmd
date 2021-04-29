@@ -129,7 +129,7 @@ For the pop genre we saw a few different trends. The top 3 artists had a lower d
 
 
 #### **- How have energy, liveliness, danceability, duration, speechiness, and tempo changed throughout the years?**
-The following graphs show the change in energy, liveliness, danceability, duration, speechiness, and tempo throughout the year. Every metric has change widely throughout the years and has not followed any specfic pattern. Some metrics have risen while other metrics have fallen. There is also heavy up and down fluctuation throughout each year.
+The following graphs show the change in energy, liveliness, danceability, duration, speechiness, and tempo throughout the year. Every metric has change widely throughout the years and has not followed any specfic pattern. Some metrics have risen while other metrics have fallen. There is also heavy up and down fluctuation throughout each year but each metric has some large overall trend. Look at the change in acousticness, for example, despite large fluctuations year-to-year, there is an overall downward trend for the data.
 ```{r, echo=FALSE, message = FALSE, warning = FALSE, results=FALSE, fig.align='default', fig.show="hold", out.width="50%"}
 years <- read.csv("./1921_2020_spotify/data_by_year.csv")
 all <- read.csv("./1921_2020_spotify/data.csv")
@@ -179,7 +179,7 @@ ggplot(yearWithArtist, aes(x=year, y = acousticness,color="Yearly Acousticness A
 ggplot(yearWithArtist, aes(x=year, y = danceability,color="Yearly Danceability Average "))+
   geom_line()+scale_color_manual(values=c("firebrick1", "black"))+
   geom_line(data=artistByYear, aes(x=year, y = danceabilityArt, color='Top Artists Danceability'))+
-  ylab("Average Danceability")+ggtitle('Average Acousticness per Year',subtitle='Comparing best artist of the year\'s danceability to average danceability')
+  ylab("Average Danceability")+ggtitle('Average Danceability per Year',subtitle='Comparing best artist of the year\'s danceability to average danceability')
 
 #Energy
 ggplot(yearWithArtist, aes(x=year, y = energy,color="Yearly Energy Average"))+
