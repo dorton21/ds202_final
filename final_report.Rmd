@@ -153,7 +153,7 @@ Our Github repository address is https://github.com/dorton21/ds202_final
 #### **Justin Park**
 
 ```{R}
-top50 <- read.csv("C://Users//justi//Desktop//DS202//ds202_final//2019_top50_spotify//top50.csv")
+top50 <- read.csv("2019_top50_spotify/top50.csv")
 str(top50)
 ```
 
