@@ -129,6 +129,7 @@ For the pop genre we saw a few different trends. The top 3 artists had a lower d
 
 
 #### **- How have energy, liveliness, danceability, duration, speechiness, and tempo changed throughout the years?**
+The following graphs show the change in energy, liveliness, danceability, duration, speechiness, and tempo throughout the year. Every metric has change widely throughout the years and has not followed any specfic pattern. Some metrics have risen while other metrics have fallen. There is also heavy up and down fluctuation throughout each year.
 ```{r, echo=FALSE, message = FALSE, warning = FALSE, results=FALSE, fig.align='default', fig.show="hold", out.width="50%"}
 years <- read.csv("./1921_2020_spotify/data_by_year.csv")
 all <- read.csv("./1921_2020_spotify/data.csv")
