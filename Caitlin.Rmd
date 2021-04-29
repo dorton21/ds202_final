@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(dplyr)
 library(Hmisc)
+library(ggpubr)
 library(ggplot2)
 ```
 
@@ -76,6 +77,7 @@ summary(top5)
 bottom45 <- top50 %>% filter(X > 5)
 head(bottom45)
 summary(bottom45)
+
 ```
 
 Overall, the top 5 songs have a higher mean beats per minute, energy, loudness, length, and speechiness than the other 45 songs. Both the top 5 songs and the other 45 songs also have very similar mean valence and popularity. The top 5 songs also have a lower danceability, liveness, and acousticness than the other 45 songs.
