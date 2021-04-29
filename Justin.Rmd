@@ -12,7 +12,7 @@ library(tidyverse)
 library(ggplot2)
 library(dplyr)
 
-top50 <- read.csv("C://Users//caitl//Documents//DS 202//ds202_final//2019_top50_spotify//top50.csv")
+top50 <- read.csv("C://Users//justi//Desktop//DS202//ds202_final//2019_top50_spotify//top50.csv")
 str(top50)
 ```
 What are the most popular genres?

@@ -57,7 +57,7 @@ ggplot(yearWithArtist, aes(x=year, y = acousticness,color="Yearly Acousticness A
 ggplot(yearWithArtist, aes(x=year, y = danceability,color="Yearly Danceability Average "))+
   geom_line()+scale_color_manual(values=c("firebrick1", "black"))+
   geom_line(data=artistByYear, aes(x=year, y = danceabilityArt, color='Top Artists Danceability'))+
-  ylab("Average Danceability")+ggtitle('Average Acousticness per Year',subtitle='Comparing best artist of the year\'s danceability to average danceability')
+  ylab("Average Danceability")+ggtitle('Average Danceability per Year',subtitle='Comparing best artist of the year\'s danceability to average danceability')
 
 #Energy
 ggplot(yearWithArtist, aes(x=year, y = energy,color="Yearly Energy Average"))+

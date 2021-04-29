@@ -265,6 +265,73 @@ For the pop genre we saw a few different trends. The top 3 artists had a lower d
 <p>Our Github repository address is <a href="https://github.com/dorton21/ds202_final" class="uri">https://github.com/dorton21/ds202_final</a></p>
 <div id="justin-park" class="section level4">
 <h4><strong>Justin Park</strong></h4>
+<pre class="r"><code>top50 &lt;- read.csv(&quot;2019_top50_spotify/top50.csv&quot;)
+str(top50)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    50 obs. of  14 variables:
+##  $ X               : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Track.Name      : chr  &quot;Señorita&quot; &quot;China&quot; &quot;boyfriend (with Social House)&quot; &quot;Beautiful People (feat. Khalid)&quot; ...
+##  $ Artist.Name     : chr  &quot;Shawn Mendes&quot; &quot;Anuel AA&quot; &quot;Ariana Grande&quot; &quot;Ed Sheeran&quot; ...
+##  $ Genre           : chr  &quot;canadian pop&quot; &quot;reggaeton flow&quot; &quot;dance pop&quot; &quot;pop&quot; ...
+##  $ Beats.Per.Minute: int  117 105 190 93 150 102 180 111 136 135 ...
+##  $ Energy          : int  55 81 80 65 65 68 64 68 62 43 ...
+##  $ Danceability    : int  76 79 40 64 58 80 75 48 88 70 ...
+##  $ Loudness..dB..  : int  -6 -4 -4 -8 -4 -5 -6 -5 -6 -11 ...
+##  $ Liveness        : int  8 8 16 8 11 9 7 8 11 10 ...
+##  $ Valence.        : int  75 61 70 55 18 84 23 35 64 56 ...
+##  $ Length.         : int  191 302 186 198 175 220 131 202 157 194 ...
+##  $ Acousticness..  : int  4 8 12 12 45 9 2 15 5 33 ...
+##  $ Speechiness.    : int  3 9 46 19 7 4 29 9 10 38 ...
+##  $ Popularity      : int  79 92 85 86 94 84 92 90 87 95 ...</code></pre>
+<p>What are the most popular genres?</p>
+<pre class="r"><code>myvars &lt;- c(&quot;Genre&quot;, &quot;Popularity&quot;)
+top50genres &lt;- top50[myvars]
+
+topgenres &lt;- top50genres %&gt;%
+  group_by(Genre) %&gt;%
+  summarize(Popularity = mean(Popularity))
+
+topgenres &lt;- topgenres[order(-topgenres$Popularity),]
+
+topgenres</code></pre>
+<pre><code>## # A tibble: 21 x 2
+##    Genre            Popularity
+##    &lt;chr&gt;                 &lt;dbl&gt;
+##  1 dfw rap                92.5
+##  2 electropop             92  
+##  3 trap music             92  
+##  4 escape room            91  
+##  5 pop house              91  
+##  6 reggaeton              91  
+##  7 latin                  89.8
+##  8 canadian hip hop       89.7
+##  9 atl hip hop            89  
+## 10 big room               89  
+## # ... with 11 more rows</code></pre>
+<p>Who are the most popular artists?</p>
+<pre class="r"><code>myvars2 &lt;- c(&quot;Artist.Name&quot;, &quot;Popularity&quot;)
+top50artists &lt;- top50[myvars2]
+
+topartists &lt;- top50artists %&gt;%
+  group_by(Artist.Name) %&gt;%
+  summarize(Popularity = mean(Popularity))
+
+topartists &lt;- topartists[order(-topartists$Popularity),]
+
+topartists</code></pre>
+<pre><code>## # A tibble: 38 x 2
+##    Artist.Name   Popularity
+##    &lt;chr&gt;              &lt;dbl&gt;
+##  1 Bad Bunny           93  
+##  2 Post Malone         92.5
+##  3 Anuel AA            92  
+##  4 Billie Eilish       92  
+##  5 Drake               92  
+##  6 Lil Tecca           92  
+##  7 Daddy Yankee        91  
+##  8 Lizzo               91  
+##  9 Lunay               91  
+## 10 MEDUZA              91  
+## # ... with 28 more rows</code></pre>
 </div>
 <div id="marcella-anderson" class="section level4">
 <h4><strong>Marcella Anderson</strong></h4>
@@ -277,7 +344,7 @@ For the pop genre we saw a few different trends. The top 3 artists had a lower d
 <p>In addition to the work below, Desmond contributed on the writing of the proposal, writing of the final report, creation of the powerpoint, and presentation of the final project.</p>
 <pre class="r"><code>library(tidyverse)
 library(plotly)</code></pre>
-<pre><code>## Warning: package &#39;plotly&#39; was built under R version 4.0.4</code></pre>
+<pre><code>## Warning: package &#39;plotly&#39; was built under R version 4.0.5</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;plotly&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:reshape&#39;:
