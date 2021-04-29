@@ -150,7 +150,37 @@ In conclusion,
 
 Our Github repository address is https://github.com/dorton21/ds202_final
 
-#### **Justin Park**  
+#### **Justin Park**
+
+What are the most popular genres?
+```{R}
+myvars <- c("Genre", "Popularity")
+genres <- top50[myvars]
+
+genres <- genres[order(-genres$Popularity),]
+
+topgenres <- genres %>%
+  group_by(Genre) %>%
+  summarize(Popularity = mean(Popularity))
+
+topgenres <- topgenres[order(-topgenres$Popularity),]
+
+topgenres
+```
+
+Who are the most popular artists?
+```{R}
+myvars2 <- c("Artist.Name", "Popularity")
+artists <- top50[myvars2]
+
+topartists <- artists %>%
+  group_by(Artist.Name) %>%
+  summarize(Popularity = mean(Popularity))
+
+topartists <- topartists[order(-topartists$Popularity),]
+
+topartists
+```
 
   
 #### **Marcella Anderson**  
