@@ -294,6 +294,7 @@ ggplot(years, aes(x=year, y=speechiness)) + geom_line(color="pink") + ggtitle("S
 ```
 
 #### **Mario Lloyd Galvao-Wilson**  
+In addition to the finalized code below, Mario helped with data aquisition, proposal brainstorming, presentation slides, final report, and the final presentation.
 ```{r}
 library(dplyr)
 library(ggplot2)
