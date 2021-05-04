@@ -215,8 +215,7 @@ library(reshape2)</code></pre>
 ## 
 ##     smiths</code></pre>
 <pre class="r"><code>genre &lt;- read.csv(&quot;./1921_2020_spotify/data_by_genres.csv&quot;)
-artists &lt;- read.csv(&quot;./1921_2020_spotify/data_w_genres.csv&quot;)
-d &lt;- read.csv(&quot;./1921_2020_spotify/data.csv&quot;)</code></pre>
+artists &lt;- read.csv(&quot;./1921_2020_spotify/data_w_genres.csv&quot;)</code></pre>
 <pre class="r"><code>top10g &lt;- genre %&gt;% 
   arrange(-popularity) %&gt;%
   head(10)

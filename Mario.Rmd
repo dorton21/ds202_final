@@ -13,7 +13,6 @@ library(reshape2)
 library(tidyr)
 genre <- read.csv("./1921_2020_spotify/data_by_genres.csv")
 artists <- read.csv("./1921_2020_spotify/data_w_genres.csv")
-d <- read.csv("./1921_2020_spotify/data.csv")
 ```
 
 ```{r}
