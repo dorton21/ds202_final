@@ -95,7 +95,7 @@ top10g %>%
   ggplot(aes(name, value)) + geom_col(position = 'dodge') + facet_wrap(~genres) + coord_flip() + labs(x = 'Value', y = 'Characteristic', title = 'Values for Each Characteristic of Each Top 10 Genre') + theme_bw()
 ```
 
-This graph is obtained using the 1921-2021 songs data. 
+This graph is obtained using the 1921-2021 Spotify songs data. If we look at the top two genres, chinese electropop and korean mask singer, it is apparent that energy and danceability are both very high. If we expand to look at all the genres plotted we can see that for the top ten genres energy and danceability are high in every genre. This could mean that to get a high popularity rating a genre should be high energy and easily danced to. 
 
 <hr>
 ### **- What are the most frequent genres of the top artists?**
