@@ -71,6 +71,7 @@ years <- read.csv("./1921_2020_spotify/data_by_year.csv")
 all <- read.csv("./1921_2020_spotify/data.csv")
 ```
 
+<hr>
 ### **- What are the most popular genres based on the data's popularity ratings?**
 
 ```{r, echo=FALSE, fig.align='center', fig.show="hold", out.width="80%"}
@@ -83,6 +84,18 @@ top10g %>%
 ```
 
 This plot shows the popularity of the top ten genres, using the popularity values given for the genres in the 1921-2021 songs data. This graph is scaled so that only popularity values between 70 and 82 are shown, this is used to better illustrate variation in popularity between each of the ten top genres. The popularity values seen in the given popularity are strange, because some seldom heard of genres are the top genres. For example, chinese electropop is the most popular music genre even though most people could not name a song in that genre. It has been hypothesized that this is the top genre due to China being the most populated country, but our data comes from Spotify which is not available in China, making this hypothesis unlikely. Since the results do not make much sense there must be a different way to look at the data and better determine the top genres, this is tackled later in our report. 
+
+<hr>
+### **- What characteristics make up the top genres?**
+
+```{r, echo=FALSE, fig.align='center', fig.show="hold", out.width="80%"}
+top10g %>%
+  select(-duration_ms, -speechiness, -popularity, -mode, -loudness, -tempo, -key) %>%
+  pivot_longer(., cols = !genres) %>%
+  ggplot(aes(name, value)) + geom_col(position = 'dodge') + facet_wrap(~genres) + coord_flip() + labs(x = 'Value', y = 'Characteristic', title = 'Values for Each Characteristic of Each Top 10 Genre') + theme_bw()
+```
+
+This graph is obtained using the 1921-2021 songs data. 
 
 <hr>
 ### **- What are the most frequent genres of the top artists?**
