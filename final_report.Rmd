@@ -388,7 +388,7 @@ Our Github repository can be found at https://github.com/dorton21/ds202_final
 Justin worked on the questions "What are the most popular genres?" and "Who are the most popular artists?". He also helped with putting together the final report and presentation.
   
 #### **Marcella Anderson**  
-
+Marcy worked on analyzing how artists' sound changes over the year. She also looked at how the different feature have changed over the year. Along with that analysis she worked one the presentation and final report.
   
 #### **Caitlin Fordell**  
 Caitlin worked on the questions "Are there any highly correlated variables?", "Are there any audio features that most top songs have in common?", and "Are ranking or beats per minute affected by popularity?" along with development of the proposal, presentation, and final report.  
@@ -399,7 +399,7 @@ Desmond contributed on the writing of the proposal, writing of the final report,
 
 
 #### **Mario Lloyd Galvao-Wilson**  
-In addition to the finalized code above, Mario helped with data aquisition, proposal brainstorming, presentation slides, final report, and the final presentation.
+In addition to the finalized code above, Mario helped with data acquisition, proposal brainstorming, presentation slides, final report, and the final presentation.
   
   
 #### **Brian Sayre**  
