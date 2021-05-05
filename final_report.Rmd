@@ -385,7 +385,7 @@ In conclusion, we found that top artists tended to be singers who did align with
 Our Github repository can be found at https://github.com/dorton21/ds202_final
 
 #### **Justin Park**
-Justing worked on the questions "What are the most popular genres?" and "Who are the most popular artists?". He also helped with putting together the final report and presentation.
+Justin worked on the questions "What are the most popular genres?" and "Who are the most popular artists?". He also helped with putting together the final report and presentation.
   
 #### **Marcella Anderson**  
 
