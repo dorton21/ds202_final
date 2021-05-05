@@ -375,7 +375,7 @@ The top three artists in this dataset were Bad Bunny, Post Malone, and Anuel AA.
 
 ## **Conclusion**
 
-In conclusion, we found that top artists tended to be singers who did align with peers in their genre for most features. However, we could see some new trends in those genres by comparing the currently popular artists with the rest of the genres. Also, we showed that over time, ___________ (these trends were shown in time series analysis). Additionally, we found that 2019 music seemed to favor upbeat and danceable songs that were not very acoustic or live. In particular, the artists ______,_______,and ______ were very influential in 2019.
+In conclusion, we found that top artists tended to be singers who did align with peers in their genre for most features. However, we could see some new trends in those genres by comparing the currently popular artists with the rest of the genres. Also, we showed that over time, there were major changes in the musical characteristics of the most popular songs (these trends were shown in time series analysis). Additionally, we found that 2019 music seemed to favor upbeat and danceable songs that were not very acoustic or live. In particular, the artists Bad Bunny and Post Malone were very influential in 2019.
 
 <hr>
 
